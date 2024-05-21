@@ -27,7 +27,7 @@ Describing your dataset
 ```
 !nvidia-smi
 ```
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](/사양.png)
 - 필요한 모듈 import
 ```
 cvzone==1.6.1
