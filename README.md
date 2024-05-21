@@ -23,6 +23,35 @@ Describing your dataset
 - Explaining features (if any)
 
 ## IV. Training A Model
+- 모델 학습을 더 좋은 환경에서 하기 위해 구글 코랩에서 GPU를 빌려 진행함
+```
+!nvidia-smi
+```
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+- 필요한 모듈 import
+```
+cvzone==1.6.1
+ultralytics==8.2.18
+opencv-python==4.9.0.80
+numpy=1.26.4
+hydra-core>=1.2.0
+matplotlib>=3.2.2
+numpy>=1.18.5
+Pillow>=7.1.2
+PyYAML>=5.3.1
+requests>=2.23.0
+scipy>=1.4.1
+torch>=1.7.0
+torchvision>=0.8.1
+tqdm>=4.64.0
+filterpy==1.4.5
+scikit-image==0.19.3
+lap==0.4.0
+```
+- 학습 시작
+```
+!yolo task=detect mode=train model=yolov8l.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=640
+```
 
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
