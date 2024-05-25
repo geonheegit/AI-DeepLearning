@@ -55,7 +55,7 @@ lap==0.4.0
 ```
 - 학습 시작
 ```
-!yolo task=detect mode=train model=yolov8l.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=640
+!yolo task=detect mode=train model=yolov8n.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=320
 ```
 
 ## V. Evaluation & Analysis
