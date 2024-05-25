@@ -64,8 +64,7 @@ lap==0.4.0
 ```
 
 ### - Trial 2
-
-![result](/imagesDOCU/result.gif)
+![result](https://github.com/geonheegit/AI-DeepLearning/assets/101814977/8c7f226a-7508-4c30-8281-25ac08f7441a)
 
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
