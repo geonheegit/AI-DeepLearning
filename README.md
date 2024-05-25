@@ -17,7 +17,7 @@
 - 많은 데이터를 직접 게임을 하면서 하나하나 캡쳐하여 레이블링 하는 것은 너무 힘들기 때문에 데이터셋을 공유해주는 사이트(<https://universe.roboflow.com>)에서 마인크래프트 속 플레이어 외 21종의 엔티티의 레이블링된 사진 데이터를 가져와 사용하였다.
 
 - 데이터는 총 2158개의 사진 파일로 이루어져 있으며, 분류하는 Class는 Player를 포함하여 22개이다.
-![App Screenshot](/data.png)
+![App Screenshot](/data_num.png)
 - train용 데이터는 996개, validation용 데이터는 208개, test용 데이터는 54개이다. (각각, 79% | 17% | 4% 이다)
 ![App Screenshot](/train용_데이터.png)
 ![App Screenshot](/valid용_데이터.png)
