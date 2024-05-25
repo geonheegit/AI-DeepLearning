@@ -37,7 +37,7 @@
 ```
 !nvidia-smi
 ```
-![App Screenshot](/사양.png)
+![App Screenshot](/imagesDOCU/사양.png)
 - 필요한 모듈 import
 ```
 cvzone==1.6.1
