@@ -1,5 +1,4 @@
-
-# YOLO V8을 이용한 마인크래프트 플레이어 추적
+# YOLO V8을 이용한 마인크래프트 PVP 봇 만들기
 
 - Real Time Object Detection으로 마인크래프트 게임 화면 속에서 플레이어를 감지한 뒤, 감지한 플레이어를 추적하여 공격하는 작업을 수행하는 모델을 제작한다. 결투에서 승리하는 것이 목적이다. 
 
@@ -9,14 +8,20 @@
 
 ## I. Proposal
 - Motivation: Why are you doing this?
-▶ Computer Vision 분야에 관심이 있고, 그 중에서도 Real Time Object Detection과 Image Classification에 관심이 있어 이를 접목하여 재미있고 흥미로운 프로젝트를 진행하는 과정에서 관련 지식을 얻기 위함이다.
+▶ Computer Vision 분야에 관심이 있고, 그 중에서도 Real Time Object Detection과 Image Classification에 관심이 있어, 이를 사람들이 잘 알고 있는 '마인크래프트'와 접목하여 재미있고 흥미로운 프로젝트를 만들고 싶었다. AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘을 정도의 성능을 발휘할 수 있다는 점이다. 평소 알고있던 게임에 인공지능을 적용시켜 플레이하면 어떤 일이 일어날지 궁금하였고, 실제로 맞붙어 보았을 때 인간을 상대로 압도적인 성능을 발휘할 수 있을지가 궁금하여 이 프로젝트를 진행하였다.
 
 - What do you want to see at the end?
-▶ 인간 플레이어보다 훨씬 빠른 탐지능력으로 정확한 공격을 하여 이기는 모델을 훈련시키고 이를 관전하는 것이다.
+▶ 인간 플레이어보다 훨씬 빠른 탐지능력으로 정확한 공격을 하여 이기는 모델을 훈련시키고 훈련시킨 모델이 조작하는 플레이어와 직접 대결하는 것이다.
 
 ## II. Datasets
-Describing your dataset
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+- 많은 데이터를 직접 게임을 하면서 하나하나 캡쳐하여 레이블링 하는 것은 너무 힘들기 때문에 데이터셋을 공유해주는 사이트(<https://universe.roboflow.com>)에서 마인크래프트 속 플레이어 외 21종의 엔티티의 레이블링된 사진 데이터를 가져와 사용하였다.
+
+- 데이터는 총 2158개의 사진 파일로 이루어져 있으며, 분류하는 Class는 Player를 포함하여 22개이다.
+![App Screenshot](/데이터셋_개수.png)
+- train용 데이터는 996개, validation용 데이터는 208개, test용 데이터는 54개이다. (각각, 79% | 17% | 4% 이다)
+![App Screenshot](/train용_데이터.png)
+![App Screenshot](/valid용_데이터.png)
+![App Screenshot](/test용_데이터.png)
 
 ## III. Methodology 
 - Explaining your choice of algorithms (methods)
