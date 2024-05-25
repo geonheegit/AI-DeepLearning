@@ -64,7 +64,7 @@ lap==0.4.0
 ```
 
 ### - Trial 2
-![result](https://github.com/geonheegit/AI-DeepLearning/assets/101814977/8c7f226a-7508-4c30-8281-25ac08f7441a)
+![result]([https://github.com/geonheegit/AI-DeepLearning/assets/101814977/8c7f226a-7508-4c30-8281-25ac08f7441a](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHV0d2tjOGJqOXVvZGluYjEzOWVvNnE5dDYwYXFxczB4YmhheWY0diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qB4difShfZ3BZ0uoNY/giphy-downsized-large.gif))
 
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
