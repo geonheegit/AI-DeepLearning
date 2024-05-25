@@ -1,3 +1,4 @@
+
 # YOLO V8을 이용한 마인크래프트 PVP 봇 만들기
 
 - Real Time Object Detection으로 마인크래프트 게임 화면 속에서 플레이어를 감지한 뒤, 감지한 플레이어를 추적하여 공격하는 작업을 수행하는 모델을 제작한다. 결투에서 승리하는 것이 목적이다. 
@@ -17,17 +18,21 @@
 - 많은 데이터를 직접 게임을 하면서 하나하나 캡쳐하여 레이블링 하는 것은 너무 힘들기 때문에 데이터셋을 공유해주는 사이트(<https://universe.roboflow.com>)에서 마인크래프트 속 플레이어 외 21종의 엔티티의 레이블링된 사진 데이터를 가져와 사용하였다.
 
 - 데이터는 총 2158개의 사진 파일로 이루어져 있으며, 분류하는 Class는 Player를 포함하여 22개이다.
-![App Screenshot](/data_num.png)
+![App Screenshot](/imagesDOCU/데이터셋_개수.png)
 - train용 데이터는 996개, validation용 데이터는 208개, test용 데이터는 54개이다. (각각, 79% | 17% | 4% 이다)
-![App Screenshot](/train용_데이터.png)
-![App Screenshot](/valid용_데이터.png)
-![App Screenshot](/test용_데이터.png)
+![App Screenshot](/imagesDOCU/train용_데이터.png)
+![App Screenshot](/imagesDOCU/valid용_데이터.png)
+![App Screenshot](/imagesDOCU/test용_데이터.png)
+- 각각의 데이터들은 다음과 같이 라벨링 할 수 있으며, 라벨링을 완료하면 각 사진 파일과 같은 이름을 가진 라벨링 txt파일이 labels 폴더와 함께 생성된다. 해당 txt파일 안에는 각각의 사진 파일에서 라벨링된 사각형의 꼭짓점 값을 저장하고 있으며, 이 텍스트 파일은 나중에 모델을 학습할 때 사용된다.
+![App Screenshot](/imagesDOCU/player_1.png)
+![App Screenshot](/imagesDOCU/player_2.png)
 
 ## III. Methodology 
 - Explaining your choice of algorithms (methods)
 - Explaining features (if any)
 
 ## IV. Training A Model
+### - Trial 1
 - 모델 학습을 더 좋은 환경에서 하기 위해 구글 코랩에서 GPU를 빌려 진행함
 ```
 !nvidia-smi
@@ -55,8 +60,12 @@ lap==0.4.0
 ```
 - 학습 시작
 ```
-!yolo task=detect mode=train model=yolov8n.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=320
+!yolo task=detect mode=train model=yolov8l.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=640
 ```
+
+### - Trial 2
+
+![result](/imagesDOCU/result.gif)
 
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
