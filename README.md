@@ -72,8 +72,54 @@ lap==0.4.0
 ```
 !yolo task=detect mode=train model=yolov8l.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=640
 ```
-> qwdqwd
-> qwd
+> model은 large 모델을 사용하였으며, 이미지 크기는 640*640으로 설정하여 학습하였다.
+
+- 학습이 완료된 .pt파일의 이름을 MCPVPAI_Large.pt로 바꿔준 뒤 opencv 모듈을 이용하여 detect된 구역을 직사각형으로 표시하여 화면에 띄우는 프로그램을 작성한다.
+```python
+from ultralytics import YOLO
+import mss
+import cv2
+import cvzone
+import math
+import numpy as np
+
+model = YOLO("model/MCPVPAI_Large.pt")
+
+classNames = ['Bee', 'Cave Spider', 'Chest', 'Cow', 'Creeper', 'Dolphin', 'Enderman', 'Goat', 'Iron Golem', 'Llama',
+               'Panda', 'Pig', 'Piglin', 'Player', 'Polar Bear', 'Sheep', 'Spider', 'Trader Lama', 'Villager House',
+                 'Villager', 'Wolf', 'Zombified Piglin']
+
+with mss.mss() as sct:
+    monitor = {"top": 200, "left": 1000, "width": width, "height": height}
+
+    while True:
+        img = np.array(sct.grab(monitor))
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+
+        results = model(img)
+
+        for r in results:
+            boxes = r.boxes
+            for box in boxes:
+                x1, y1, x2, y2 = box.xyxy[0]
+                x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+
+                w, h = x2 - x1, y2 - y1
+
+                cvzone.cornerRect(img, (x1, y1, w, h))
+
+                conf = math.ceil((box.conf[0] * 100)) / 100
+
+                cls = int(box.cls[0])
+
+                cvzone.putTextRect(img, f'{classNames[cls]} {conf * 100}%', (max(0, x1), max(35, y1)), scale = 1, thickness = 1)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        cv2.imshow("Image", img)
+
+        if cv2.waitKey(1) == ord('s'):
+            break
+```
 
 ### - Trial 2
 ![result](/imagesDOCU/result1.gif)
