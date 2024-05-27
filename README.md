@@ -1,4 +1,3 @@
-
 # YOLO V8을 이용한 마인크래프트 PVP 봇 만들기
 
 - Real Time Object Detection으로 마인크래프트 게임 화면 속에서 플레이어를 감지한 뒤, 감지한 플레이어를 추적하여 공격하는 작업을 수행하는 모델을 제작한다. 결투에서 승리하는 것이 목적이다. 
@@ -73,6 +72,8 @@ lap==0.4.0
 ```
 !yolo task=detect mode=train model=yolov8l.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=640
 ```
+> qwdqwd
+> qwd
 
 ### - Trial 2
 ![result](/imagesDOCU/result1.gif)
