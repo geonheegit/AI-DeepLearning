@@ -78,6 +78,9 @@ lap==0.4.0
 ### - Trial 2
 ![result](/imagesDOCU/result1.gif)
 
+![result](/imagesDOCU/nano.gif)
+![result](/imagesDOCU/large.gif)
+
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
 
