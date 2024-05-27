@@ -18,6 +18,7 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 
 평소 알고있던 게임에 인공지능을 적용시켜 플레이하면 어떤 일이 일어날지 궁금하였고, 실제로 맞붙어 보았을 때 인간을 상대로 압도적인 성능을 발휘할 수 있을지가 궁금하여 이 프로젝트를 진행하였다.
 
+<br>
 
 ### - What do you want to see at the end?
 
@@ -86,6 +87,8 @@ lap==0.4.0
 ```
 > model은 large 모델을 사용하였으며, 이미지 크기는 640*640으로 설정하여 학습하였다.
 
+<br>
+
 - 학습이 완료된 .pt파일의 이름을 MCPVPAI_Large.pt로 바꿔준 뒤 opencv 모듈을 이용하여 detect된 구역을 직사각형으로 표시하여 화면에 띄우는 프로그램을 작성한다.
 ```python
 from ultralytics import YOLO
@@ -132,12 +135,32 @@ with mss.mss() as sct:
         if cv2.waitKey(1) == ord('s'):
             break
 ```
+>  화면 캡쳐: mss
+>  <br>
+>  이미지 편집 및 출력: cv2, cvzone
+
+<br>
+
+```python
+classNames = ['Bee', 'Cave Spider', 'Chest', 'Cow', 'Creeper', 'Dolphin', 'Enderman', 'Goat', 'Iron Golem', 'Llama',
+               'Panda', 'Pig', 'Piglin', 'Player', 'Polar Bear', 'Sheep', 'Spider', 'Trader Lama', 'Villager House',
+                 'Villager', 'Wolf', 'Zombified Piglin']
+```
+- classNames에서 알 수 있듯이 학습한 모델은 Player 말고도 다른 객체들도 detect 할 수 있다. 다른 객체들도 데이터 셋에 포함시켜 학습한 이유는, 플레이어와 전투를 벌일 때 다른 오브젝트가 화면에 감지 되어도 이를 Player로 감지하여 공격하는 현상을 방지하기 위함이다. Player로 인식되는 객체에게만 공격을 이어나갈 수 있도록 다른 오브젝트를 구분할 수 있도록 하였다.
+
+
+### [Result 1]
+![result](/imagesDOCU/large.gif)
+
+#### - 문제점
+- 
+
 
 ### - Trial 2
 ![result](/imagesDOCU/result1.gif)
 
 ![result](/imagesDOCU/nano.gif)
-![result](/imagesDOCU/large.gif)
+
 
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
