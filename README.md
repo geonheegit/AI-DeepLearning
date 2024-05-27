@@ -231,9 +231,6 @@ with mss.mss() as sct:
 
 
 
-![result](/imagesDOCU/result1.gif)
-
-
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
 
