@@ -38,15 +38,15 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 - train용 데이터는 996개, validation용 데이터는 208개, test용 데이터는 54개이다. (각각, 79% | 17% | 4% 이다)
 
 
-<img src = "/imagesDOCU/train용_데이터.png" width="70%" height="70%">
-<img src = "/imagesDOCU/valid용_데이터.png" width="70%" height="70%">
-<img src = "/imagesDOCU/test용_데이터.pngg" width="70%" height="70%">
+<img src = "/imagesDOCU/train용_데이터.png" width="30%" height="30%">
+<img src = "/imagesDOCU/valid용_데이터.png" width="30%" height="30%">
+<img src = "/imagesDOCU/test용_데이터.png" width="30%" height="30%">
 
 
 - 각각의 데이터들은 다음과 같이 라벨링 할 수 있으며, 라벨링을 완료하면 각 사진 파일과 같은 이름을 가진 라벨링 txt파일이 labels 폴더와 함께 생성된다. 해당 txt파일 안에는 각각의 사진 파일에서 라벨링된 사각형의 꼭짓점 값을 저장하고 있으며, 이 텍스트 파일은 나중에 모델을 학습할 때 사용된다.
 
-<img src = "/imagesDOCU/player_1.png" width="50%" height="50%">
-<img src = "/imagesDOCU/player_2.png" width="50%" height="50%">
+<img src = "/imagesDOCU/player_1.png" width="35%" height="35%">
+<img src = "/imagesDOCU/player_2.png" width="35%" height="35%">
 
 
 ## III. Methodology 
