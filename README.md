@@ -43,14 +43,15 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 - Explaining your choice of algorithms (methods)
 - 이 프로젝트에서 Object Detection을 주로 사용하였다.
 - Object Detection은 이미지를 입력받은 물체가 있는 영역의 위치를 Bounding Box로 표시한 후, Bounding Box 내에 존재하는 물체를 Label로 분류하여 이미지 내 물체의 위치와 종류를 찾아내는 기술이다.
-- YOLOv8을 사용하였다. YOLO(You Only Look Once)라는 이름에서 알 수 있듯, Overfeat, FPN 등 다른 이미지 검출 모델과는 다르게 이미지를 한 번만 보고 물체를 판단한다는 특징이 있는데, 이는 동영상과 같은 실시간 Object Detection을 수행하기에 적합하다.
+- YOLOv8을 사용하였다. YOLO(You Only Look Once)라는 이름에서 알 수 있듯, 다른 이미지 검출 모델과는 다르게 이미지를 한 번만 보고 물체를 판단한다는 특징이 있는데, 이는 동영상과 같은 실시간 Object Detection을 수행하기에 적합하다.
 - YOLO의 구조는 다음과 같다. (https://github.com/ultralytics/ultralytics/issues/189)
-  ![App Screenshot](/imagesDOCU/239739723-57391d0f-1848-4388-9f30-88c2fb79233f.jpg)
 - 기본적으로 YOLO는 CNN 모델을 기반으로 feature를 추출하는데, 처음 Input 이미지를 7x7 Grid Cell로 나눈 뒤 각 Grid Cell별로 2개의 Bounding Box를 예측하게 된다. 그럼 결과적으로 한장의 이미지에 98개의 Bounding Box를 예측하게 되고, 마지막으로 NMS를 통해 최종적으로 확률이 높은 예측 결과를 남겨 Label화 시킨다.
-NMS(Non-Maximum Suppression) : 이미지가 Object Detection 알고리즘을 거치면 각 Bounding Box에 어떤 물체일 확률값, Score를 가지는데, NMS 알고리즘을 통해 한 오브젝트에서 가장 Score가 높은 박스를 제외한 박스를 제거하는 알고리즘이 NMS이다.
+-NMS(Non-Maximum Suppression) : 이미지가 Object Detection 알고리즘을 거치면 각 Bounding Box에 어떤 물체일 확률값, Score를 가지는데, NMS 알고리즘을 통해 한 오브젝트에서 가장 Score가 높은 박스를 제외한 박스를 제거하는 알고리즘이 NMS이다.
+
+
  참고 
-(https://brunch.co.kr/@aischool/11)
-(https://ctkim.tistory.com/entry/Non-maximum-Suppression-NMS)
+-(https://brunch.co.kr/@aischool/11)
+-(https://ctkim.tistory.com/entry/Non-maximum-Suppression-NMS)
 - Explaining features (if any)
 
 ## IV. Training A Model
@@ -147,18 +148,90 @@ classNames = ['Bee', 'Cave Spider', 'Chest', 'Cow', 'Creeper', 'Dolphin', 'Ender
 ```
 - classNames에서 알 수 있듯이 학습한 모델은 Player 말고도 다른 객체들도 detect 할 수 있다. 다른 객체들도 데이터 셋에 포함시켜 학습한 이유는, 플레이어와 전투를 벌일 때 다른 오브젝트가 화면에 감지 되어도 이를 Player로 감지하여 공격하는 현상을 방지하기 위함이다. Player로 인식되는 객체에게만 공격을 이어나갈 수 있도록 다른 오브젝트를 구분할 수 있도록 하였다.
 
+---
 
 ### [Result 1]
 ![result](/imagesDOCU/large.gif)
 
 #### - 문제점
-- 
+- 플레이어가 화면을 인식하고 Player를 찾아내는 작업은 수행하지만, 처리 시간이 늦다.
+- 처리 시간이 충분히 빠르지 않으면 그로 인한 지연시간 동안은 상대를 찾아 공격하지 못할 뿐만 아니라 상대에게 피할 시간을 주어 패배할 것이다.
+
+#### - 수정해야 할 점
+- 모델 처리 속도를 높여 지연 시간을 줄인다.
+
+---
 
 
 ### - Trial 2
-![result](/imagesDOCU/result1.gif)
+- 두번째 학습
+```
+!yolo task=detect mode=train model=yolov8n.pt data=../content/drive/MyDrive/Datasets/PlayerDetector/data.yaml epochs=30 imgsz=320
+```
+> model은 nano 모델을 사용하였으며, 이미지 크기는 320*320으로 설정하여 학습하였다.
+1. Large 모델보다 더 가벼운 nano 모델을 사용해서 학습하여 처리 시간을 줄인다.
+2. 이미지 크기를 640 * 640에서 320* 320으로 바꿔 모델의 계산량을 줄여 처리 시간을 줄인다.
+
+---
+
+#### - 수정된 코드
+```python
+from ultralytics import YOLO
+import mss
+import cv2
+import cvzone
+import math
+import numpy as np
+
+model = YOLO("model/MCPVPAI_Nano.pt")
+
+classNames = ['Bee', 'Cave Spider', 'Chest', 'Cow', 'Creeper', 'Dolphin', 'Enderman', 'Goat', 'Iron Golem', 'Llama',
+               'Panda', 'Pig', 'Piglin', 'Player', 'Polar Bear', 'Sheep', 'Spider', 'Trader Lama', 'Villager House',
+                 'Villager', 'Wolf', 'Zombified Piglin']
+
+with mss.mss() as sct:
+    monitor = {"top": 200, "left": 1000, "width": width, "height": height}
+
+    while True:
+        img = np.array(sct.grab(monitor))
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+
+        results = model(img)
+
+        for r in results:
+            boxes = r.boxes
+            for box in boxes:
+                x1, y1, x2, y2 = box.xyxy[0]
+                x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+
+                w, h = x2 - x1, y2 - y1
+
+                cvzone.cornerRect(img, (x1, y1, w, h))
+
+                conf = math.ceil((box.conf[0] * 100)) / 100
+
+                cls = int(box.cls[0])
+
+                cvzone.putTextRect(img, f'{classNames[cls]} {conf * 100}%', (max(0, x1), max(35, y1)), scale = 1, thickness = 1)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        cv2.imshow("Image", img)
+
+        if cv2.waitKey(1) == ord('s'):
+            break
+```
+
+---
+
+### [Result 2]
 
 ![result](/imagesDOCU/nano.gif)
+
+- 전보다 훨씬 처리 속도가 빨라져 지연 시간이 확연히 줄어들었다.
+
+
+
+![result](/imagesDOCU/result1.gif)
 
 
 ## V. Evaluation & Analysis
