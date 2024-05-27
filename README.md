@@ -253,7 +253,7 @@ with mss.mss() as sct:
 
 <img src = "/imagesDOCU/results_with_graphs.png" width="70%" height="70%">
 <img src = "/imagesDOCU/confusion_matrix.png" width="70%" height="70%">
-<img src = "/imagesDOCU/predictions.png" width="70%" height="70%">
+<img src = "/imagesDOCU/predictions.jpg" width="70%" height="70%">
 
 ## VI. Related Work (e.g., existing studies)
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
