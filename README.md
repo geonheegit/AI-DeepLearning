@@ -7,7 +7,7 @@
 - 황정민(2024009889), 컴퓨터소프트웨어학부 1학년, barwui_min@naver.com / sosonamu@hanyang.ac.kr
 
 ## I. Proposal
-- Motivation: Why are you doing this?
+### Motivation: Why are you doing this?
 
 
 ▶ Computer Vision 분야에 관심이 있고 그 중에서도 Real Time Object Detection과 Image Classification에 관심이 있어, 이를 사람들이 잘 알고 있는 '마인크래프트'와 접목하여 재미있고 흥미로운 프로젝트를 만들고 싶었다.
@@ -19,7 +19,7 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 평소 알고있던 게임에 인공지능을 적용시켜 플레이하면 어떤 일이 일어날지 궁금하였고, 실제로 맞붙어 보았을 때 인간을 상대로 압도적인 성능을 발휘할 수 있을지가 궁금하여 이 프로젝트를 진행하였다.
 
 
-- What do you want to see at the end?
+### What do you want to see at the end?
 
 
 ▶ 인간 플레이어보다 훨씬 빠른 탐지능력으로 정확한 공격을 하여 이기는 모델을 훈련시키고 훈련시킨 모델이 조작하는 플레이어와 직접 대결하는 것이다.
