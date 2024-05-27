@@ -84,3 +84,6 @@ lap==0.4.0
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
 
 ## VII. Conclusion: Discussion
+
+
+[![HitCount](https://hits.dwyl.com/{username}/{project}.svg?style=flat-square)](http://hits.dwyl.com/{username}/{project})
