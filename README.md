@@ -56,7 +56,8 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 - Object Detection은 이미지를 입력받은 물체가 있는 영역의 위치를 Bounding Box로 표시한 후, Bounding Box 내에 존재하는 물체를 Label로 분류하여 이미지 내 물체의 위치와 종류를 찾아내는 기술이다.
 - YOLOv8을 사용하였다. YOLO(You Only Look Once)라는 이름에서 알 수 있듯, Overfeat, FPN등과는 다른 이미지 검출 모델과는 다르게 이미지를 한 번만 보고 물체를 판단한다는 특징이 있는데, 이는 동영상과 같은 실시간 Object Detection을 수행하기에 적합하다.
 - YOLO의 구조는 다음과 같다. (https://github.com/ultralytics/ultralytics/issues/189)
-- ![App Screenshot](/imagesDOCU/YOLO.jpg)
+<img src = "/imagesDOCU/YOLO.jpg" width="30%" height="30%">
+![App Screenshot](/imagesDOCU/YOLO.jpg)
 - 기본적으로 YOLO는 CNN 모델을 기반으로 feature를 추출하는데, 처음 Input 이미지를 7x7 Grid Cell로 나눈 뒤 각 Grid Cell별로 2개의 Bounding Box를 예측하게 된다. 그럼 결과적으로 한장의 이미지에 98개의 Bounding Box를 예측하게 되고, 마지막으로 NMS를 통해 최종적으로 확률이 높은 예측 결과를 남겨 Label화 시킨다.
 -NMS(Non-Maximum Suppression) : 이미지가 Object Detection 알고리즘을 거치면 각 Bounding Box에 어떤 물체일 확률값, Score를 가지는데, NMS 알고리즘을 통해 한 오브젝트에서 가장 Score가 높은 박스를 제외한 박스를 제거하는 알고리즘이 NMS이다.
 
