@@ -160,6 +160,12 @@ classNames = ['Bee', 'Cave Spider', 'Chest', 'Cow', 'Creeper', 'Dolphin', 'Ender
 
 #### - 수정해야 할 점
 - 모델 처리 속도를 높여 지연 시간을 줄인다.
+```
+!pip install opencv-python
+```
+- 위의 명령어로 opencv를 설치하면 일반적으로 CPU밖에 사용하지 못한다.
+- 더 빠른 처리 속도를 위해선 GPU를 사용해야하고, 이를 위해선 opencv 프로젝트를 다운받아 이를 GPU로 따로 빌드하여 컴퓨터에 적용하여야 한다.
+- GPU 빌드 방법은 영상을 참고하여 설치 하였다. (<https://www.youtube.com/watch?v=Gfl6EyIhFvM>)
 
 ---
 
