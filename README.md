@@ -252,6 +252,9 @@ with mss.mss() as sct:
 <img src = "/imagesDOCU/confusion_matrix.png" width="70%" height="70%">
 <img src = "/imagesDOCU/predictions.jpg" width="70%" height="70%">
 
+
+https://docs.ultralytics.com/guides/yolo-performance-metrics/#coco-metrics-evaluation 참고해서 그래프 분석.
+
 ## VI. Related Work (e.g., existing studies)
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
 
