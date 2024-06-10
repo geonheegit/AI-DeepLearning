@@ -367,6 +367,14 @@ if(target_CenterPosX != 0 and target_CenterPosY != 0):
 - 반대로 적이 20 픽셀 이상 오른쪽에 있으면 마우스를 오른쪽으로 이동시켜 시야를 돌리고, "a" 키를 눌러 왼쪽으로 캐릭터를 움직인다.
 - 타겟이 중앙에 가까워지면 왼쪽 마우스 버튼을 클릭하여 공격한다.
 
+---
+### 최종결과
+![result](/imagesDOCU/final_result.gif)
+- 왼쪽이 모델이 객체를 인식하는 화면이고, 오른쪽이 실제 게임 플레이 화면이다.
+- 잘 작동되고 있으며 전투를 잘 수행하는 것을 확인할 수 있다.
+
+---
+
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
 
