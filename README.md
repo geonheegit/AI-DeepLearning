@@ -377,6 +377,7 @@ if(target_CenterPosX != 0 and target_CenterPosY != 0):
 
 ## V. Evaluation & Analysis
 <img src = "/imagesDOCU/confusion_matrix.png" width="70%" height="70%">
+
 - Confusion Matrix는 YOLOv8 모델이 예측한 레이블과 실제 레이블을 비교하여 모델의 성능을 나타낸다.
 - 이 행렬은 정규화되어있고, 모델의 각 예측값이 실제 값에 대해 차지하는 비율을 보여준다.
 - 대각선에 위치할 경우 모델이 객체를 정확히 예측한 경우이다. 대부분의 예측값이 정답과 잘 일치하며, 정확도가 높을수록 더 진한 파란색으로 표시된다.
@@ -385,12 +386,14 @@ if(target_CenterPosX != 0 and target_CenterPosY != 0):
 ---
 
 <img src = "/imagesDOCU/predictions.jpg" width="70%" height="70%">
+
 - 이 사진은 모델이 valid 또는 test 데이터셋에서 예측한 결과를 보여준다.
 - 각 이미지에는 예측된 레이블과 그에 따른 신뢰도가 포함되어 있다.
 
 ---
 
 <img src = "/imagesDOCU/results_with_graphs.png" width="70%" height="70%">
+
 - Box_loss, Cls_loss, DFL_loss 모두 일관되게 감소하는 경향을 보이고 있고 이는 train과정에서 학습이 잘 이루어졌다는 것을 의미한다.
 
 - Box Loss는 모델이 예측한 경계 상자(bounding box)와 실제 경계 상자 간의 차이를 측정하는 지표이고, 예측된 박스의 좌표(중심점, 너비, 높이)가 실제 값과 얼마나 일치하는지를 측정하여 손실을 계산한다.
