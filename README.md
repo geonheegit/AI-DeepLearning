@@ -424,5 +424,6 @@ if(target_CenterPosX != 0 and target_CenterPosY != 0):
 - 한건희(2024078868): Code Implementation, Github Document Edit, Graph Analysis, Voice Recording
 - 황정민(2024009889): Dataset Processing, YOLO Model Research, Model Training
 
+---
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgeonheegit%2FAI-DeepLearning&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://github.com/geonheegit)
