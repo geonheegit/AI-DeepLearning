@@ -400,8 +400,7 @@ if(target_CenterPosX != 0 and target_CenterPosY != 0):
 - Cls Loss는 모델이 예측한 클래스 레이블과 실제 클래스 레이블 간의 차이를 측정한다. 각 객체가 어떤 클래스에 속하는지에 대한 예측이 실제 레이블과 얼마나 일치하는지를 평가하는 지표이다.
 - DFL (Distribution Focal Loss)는 각 픽셀의 좌표 분포를 학습하여 중심점과 경계의 위치를 더 정밀하게 맞추도록 유도할 때 쓰이는 지표이다. 경계 상자 예측을 위해 정밀도를 높이는 데 중점을 두며, 특히 작은 객체나 경계 근처에 위치한 객체의 위치를 정확하게 예측하는 데 도움을 준다.
 
-
-https://docs.ultralytics.com/guides/yolo-performance-metrics/#coco-metrics-evaluation 참고해서 그래프 분석.
+---
 
 ## VI. Related Work (e.g., existing studies)
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
