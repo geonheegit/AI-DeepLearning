@@ -54,6 +54,7 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 - YOLO의 구조는 다음과 같다. (https://github.com/ultralytics/ultralytics/issues/189)
 <img src = "/imagesDOCU/YOLO.jpg" width="60%" height="60%">
 - 기본적으로 YOLO는 CNN 모델을 기반으로 feature를 추출하는데, 처음 Input 이미지를 7x7 Grid Cell로 나눈 뒤 각 Grid Cell별로 2개의 Bounding Box를 예측하게 된다. 그럼 결과적으로 한장의 이미지에 98개의 Bounding Box를 예측하게 되고, 마지막으로 NMS를 통해 최종적으로 확률이 높은 예측 결과를 남겨 Label화 시킨다.
+  <img src = "/imagesDOCU/NMS.jpg" width="60%" height="60%">
 -NMS(Non-Maximum Suppression) : 이미지가 Object Detection 알고리즘을 거치면 각 Bounding Box에 어떤 물체일 확률값, Score를 가지는데, NMS 알고리즘을 통해 한 오브젝트에서 가장 Score가 높은 박스를 제외한 박스를 제거하는 알고리즘이 NMS이다.
 
 
