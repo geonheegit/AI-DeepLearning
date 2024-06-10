@@ -52,10 +52,24 @@ AI의 재미있는 점은 학습을 적절히 진행하면 인간을 뛰어넘�
 - Object Detection은 이미지를 입력받은 물체가 있는 영역의 위치를 Bounding Box로 표시한 후, Bounding Box 내에 존재하는 물체를 Label로 분류하여 이미지 내 물체의 위치와 종류를 찾아내는 기술이다.
 - YOLOv8을 사용하였다. YOLO(You Only Look Once)라는 이름에서 알 수 있듯, Overfeat, FPN등과는 다른 이미지 검출 모델과는 다르게 이미지를 한 번만 보고 물체를 판단한다는 특징이 있는데, 이는 동영상과 같은 실시간 Object Detection을 수행하기에 적합하다.
 - YOLO의 구조는 다음과 같다. (https://github.com/ultralytics/ultralytics/issues/189)
+  
 <img src = "/imagesDOCU/YOLO.jpg" width="60%" height="60%">
+
+YOLOv8는 크게 다음과 같은 단계로 작동한다:
+
+입력 이미지 처리: 입력 이미지가 신경망에 전달되기 전에 전처리가 수행된다. 일반적으로 이미지 크기가 조정되고, 정규화되며, 적절한 형식으로 변환된다.
+신경망 통과: YOLOv8는 깊은 컨볼루션 신경망(CNN)을 기반으로 하며, 입력 이미지를 여러 계층을 통과시켜 객체를 탐지한다.
+객체 검출: 신경망은 이미지의 각 위치에 대해 여러 크기의 경계 상자를 예측하고, 이들 경계 상자에 대한 클래스 확률을 계산한다.
+경계 상자 필터링: 신뢰도가 낮은 경계 상자를 걸러내고, 중복된 상자를 제거하여 최종 객체 검출 결과를 얻는다.
+
 - 기본적으로 YOLO는 CNN 모델을 기반으로 feature를 추출하는데, 처음 Input 이미지를 7x7 Grid Cell로 나눈 뒤 각 Grid Cell별로 2개의 Bounding Box를 예측하게 된다. 그럼 결과적으로 한장의 이미지에 98개의 Bounding Box를 예측하게 되고, 마지막으로 NMS를 통해 최종적으로 확률이 높은 예측 결과를 남겨 Label화 시킨다.
-  <img src = "/imagesDOCU/NMS.png" width="60%" height="60%">
 -NMS(Non-Maximum Suppression) : 이미지가 Object Detection 알고리즘을 거치면 각 Bounding Box에 어떤 물체일 확률값, Score를 가지는데, NMS 알고리즘을 통해 한 오브젝트에서 가장 Score가 높은 박스를 제외한 박스를 제거하는 알고리즘이 NMS이다.
+  <img src = "/imagesDOCU/NMS.png" width="60%" height="60%">
+  (NMS 알고리즘 도식도 : https://towardsdatascience.com/non-maximum-suppression-nms-93ce178e177c)
+  장점 :
+  실시간 처리: YOLOv8는 빠른 속도로 객체 검출을 수행할 수 있어 실시간 응용 프로그램에 적합하다.
+  단일 네트워크: 이미지를 한 번만 처리하여 객체를 검출하기 때문에 YOLOv8는 다른 객체 검출 방법에 비해 더 간단하고 효율적이다.
+  다양한 응용: YOLOv8는 보행자 검출, 자율 주행 자동차, 보안 등 다양한 응용 분야에서 활용될 수 있다.
 
 
  참고 
