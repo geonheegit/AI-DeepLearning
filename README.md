@@ -243,7 +243,129 @@ with mss.mss() as sct:
 
 - 전보다 훨씬 처리 속도가 빨라져 지연 시간이 확연히 줄어들었다.
 
+- 'MCPVPAI_Nano.pt'가 프로젝트에 좋은 성능을 내고 있으니 해당 모델를 이용하여 사용자 입력을 조작한다.
 
+---
+
+###  [마우스 및 키보드 컨트롤 설정]
+```python
+import pynput
+from pynput.mouse import Button
+
+mouse = pynput.mouse.Controller()
+keyboard_button = pynput.keyboard.Controller()
+keyboard_key = pynput.keyboard.Key
+```
+- 필요한 라이브러리들을 임포트하고 마우스와 키보드 조작을 위한 컨트롤러를 설정한다.
+
+```python
+target_CenterPosX = 0
+target_CenterPosY = 0
+target_width = 0
+mobClass = 0
+width = 850
+height = 500
+diffX = 0
+diffY = 0
+```
+- 플레이어 조작을 위한 변수를 선언한다.
+- target_CenterPosX, target_CenterPosY는 타겟의 중앙 X, Y값이다.
+- target_width는 타겟의 폭이다.
+- mobClass는 모델이 객체를 감지했을 때 해당 객체에 해당하는 class번호를 저장하기 위한 변수이다.
+- width와 height는 캡쳐하는 창의 너비와 높이이다.
+- diffX, diffY는 객체와 현재 마우스 사이의 X, Y 오차값이다.
+
+```python
+for r in results:
+    boxes = r.boxes
+    for box in boxes:
+        x1, y1, x2, y2 = box.xyxy[0]
+        x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+        w, h = x2 - x1, y2 - y1
+        target_width = w
+        target_CenterPosX, target_CenterPosY = int(x1 + w/2), int(y1 + h/2)
+        cvzone.cornerRect(img, (x1, y1, w, h))
+        conf = math.ceil((box.conf[0] * 100)) / 100
+        cls = int(box.cls[0])
+        mobClass = cls
+        cvzone.putTextRect(img, f'{classNames[cls]} {conf * 100}%', (max(0, x1), max(35, y1)), scale=1, thickness=1)
+```
+- 탐지된 객체의 경계 상자를 그려주고, 마우스를 이동할 좌표를 구하기 위해 객체의 중심 위치와 너비를 계산한다.
+
+--- 
+
+### [마인크래프트 내 캐릭터 조작]
+
+```python
+mobName = "Player"
+mouse_speed = 1000
+
+if(target_CenterPosX != 0 and target_CenterPosY != 0):
+    if(diffX < 0.45):
+        diffX = abs((target_CenterPosX - (width / 2)) / target_CenterPosX)
+
+    if(diffY < 0.45):
+        diffY = abs((target_CenterPosY - (height / 2)) / target_CenterPosY)
+
+if(classNames[mobClass] == mobName and debug == "False"):
+    keyboard_button.press("w")
+
+    if(width / 2 > target_CenterPosX + 20):
+        mouse.move(-mouse_speed * diffX, 0)
+        keyboard_button.press("d")
+    elif(width / 2 < target_CenterPosX - 20):
+        mouse.move(mouse_speed * diffX, 0)
+        keyboard_button.press("a")
+    else:
+        mouse.click(Button.left)
+
+    if(height / 2 > target_CenterPosY + 20):
+        mouse.move(0, -mouse_speed * diffY)
+    elif(height / 2 < target_CenterPosY - 20):
+        mouse.move(0, mouse_speed * diffY)
+    else:
+        mouse.click(Button.left)
+else:
+    keyboard_button.release("w")
+    keyboard_button.release("a")
+    keyboard_button.release("s")
+    keyboard_button.release("d")
+    target_CenterPosX = 0
+    target_CenterPosY = 0
+```
+- 탐지된 객체가 플레이어일 경우, 마인크래프트 캐릭터를 자동으로 조작하여 타겟을 추적하고 공격하는 코드이다.
+- mobName은 타겟으로 삼을 객체의 이름이고 여기서는 "Player"로 설정되어 있다.
+- mouse_speed는 마우스 이동 속도이다.
+
+
+
+
+```python
+if(target_CenterPosX != 0 and target_CenterPosY != 0):
+    if(diffX < 0.45):
+        diffX = abs((target_CenterPosX - (width / 2)) / target_CenterPosX)
+
+    if(diffY < 0.45):
+        diffY = abs((target_CenterPosY - (height / 2)) / target_CenterPosY)
+
+```
+- 타겟의 중심 위치가 (0, 0)이 아닌 경우, 즉 타겟이 화면에 탐지된 경우에만 실행된다.
+- diffX와 diffY는 화면 중심과 타겟 중심 간의 상대적인 차이를 계산하여, 이 값이 0.45보다 작은 경우에만 업데이트 한다. (너무 정확히 상대를 추적하려 마우스를 움직이다 놓쳐버리는 경우를 방지하기 위한 허용오차범위이다.)
+
+```python
+    if(width / 2 > target_CenterPosX + 20):
+        mouse.move(-mouse_speed * diffX, 0)
+        keyboard_button.press("d")
+    elif(width / 2 < target_CenterPosX - 20):
+        mouse.move(mouse_speed * diffX, 0)
+        keyboard_button.press("a")
+    else:
+        mouse.click(Button.left)
+```
+- 화면 중심과 타겟 중심의 X축 차이에 따라 마우스를 좌우로 이동시킵니다.
+- 화면 중심이 타겟 중심보다 20 픽셀 이상 오른쪽에 있으면(즉, 적이 내가 바라보는 방향보다 왼쪽에 있으면) 마우스를 왼쪽으로 이동시켜 시야를 돌리고, "d" 키를 눌러 오른쪽으로 캐릭터를 움직인다.
+- 반대로 적이 20 픽셀 이상 오른쪽에 있으면 마우스를 오른쪽으로 이동시켜 시야를 돌리고, "a" 키를 눌러 왼쪽으로 캐릭터를 움직인다.
+- 타겟이 중앙에 가까워지면 왼쪽 마우스 버튼을 클릭하여 공격한다.
 
 ## V. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
