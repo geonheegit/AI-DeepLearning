@@ -415,11 +415,9 @@ if(target_CenterPosX != 0 and target_CenterPosY != 0):
 ## VI. Related Work (e.g., existing studies)
 - 데이터셋: <https://universe.roboflow.com/blue-ceand-vu3o0/playerdetector>
 - opencv GPU 설치 가이드: <https://www.youtube.com/watch?v=Gfl6EyIhFvM>
-- (https://github.com/ultralytics/ultralytics/issues/189)
-- Tools, libraries, blogs, or any documentation that you have used to do this project.
-- (https://brunch.co.kr/@aischool/11)
-- (https://ctkim.tistory.com/entry/Non-maximum-Suppression-NMS)
-- Explaining features (if any)
+- <https://github.com/ultralytics/ultralytics/issues/189>
+- <https://brunch.co.kr/@aischool/11>
+- <https://ctkim.tistory.com/entry/Non-maximum-Suppression-NMS>
 
 
 ## VII. Conclusion: Discussion
