@@ -64,7 +64,7 @@ YOLOv8는 크게 다음과 같은 단계로 작동한다:
 
 - 기본적으로 YOLO는 CNN 모델을 기반으로 feature를 추출하는데, 처음 Input 이미지를 7x7 Grid Cell로 나눈 뒤 각 Grid Cell별로 2개의 Bounding Box를 예측하게 된다. 그럼 결과적으로 한장의 이미지에 98개의 Bounding Box를 예측하게 되고, 마지막으로 NMS를 통해 최종적으로 확률이 높은 예측 결과를 남겨 Label화 시킨다.
 - NMS(Non-Maximum Suppression) : 이미지가 Object Detection 알고리즘을 거치면 각 Bounding Box에 어떤 물체일 확률값, Score를 가지는데, NMS 알고리즘을 통해 한 오브젝트에서 가장 Score가 높은 박스를 제외한 박스를 제거하는 알고리즘이 NMS이다.
-- 장점 :
+장점 :
 - 실시간 처리: YOLOv8는 빠른 속도로 객체 검출을 수행할 수 있어 실시간 응용 프로그램에 적합하다.
 - 단일 네트워크: 이미지를 한 번만 처리하여 객체를 검출하기 때문에 YOLOv8는 다른 객체 검출 방법에 비해 더 간단하고 효율적이다.
 - 다양한 응용: YOLOv8는 보행자 검출, 자율 주행 자동차, 보안 등 다양한 응용 분야에서 활용될 수 있다.
